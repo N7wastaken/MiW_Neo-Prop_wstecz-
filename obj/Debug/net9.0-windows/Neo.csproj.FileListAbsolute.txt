@@ -12,3 +12,4 @@ C:\Users\arkadiusz.mulkityn\Neo\obj\Debug\net9.0-windows\refint\Neo.dll
 C:\Users\arkadiusz.mulkityn\Neo\obj\Debug\net9.0-windows\Neo.pdb
 C:\Users\arkadiusz.mulkityn\Neo\obj\Debug\net9.0-windows\Neo.genruntimeconfig.cache
 C:\Users\arkadiusz.mulkityn\Neo\obj\Debug\net9.0-windows\ref\Neo.dll
+c:\Users\arkadiusz.mulkityn\Neo\obj\Debug\net9.0-windows\Neo.sourcelink.json
