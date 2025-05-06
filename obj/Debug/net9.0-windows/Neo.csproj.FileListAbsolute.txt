@@ -1,0 +1,14 @@
+c:\Users\arkadiusz.mulkityn\Neo\obj\Debug\net9.0-windows\Neo.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\arkadiusz.mulkityn\Neo\obj\Debug\net9.0-windows\Neo.AssemblyInfoInputs.cache
+c:\Users\arkadiusz.mulkityn\Neo\obj\Debug\net9.0-windows\Neo.AssemblyInfo.cs
+c:\Users\arkadiusz.mulkityn\Neo\obj\Debug\net9.0-windows\Neo.csproj.CoreCompileInputs.cache
+C:\Users\arkadiusz.mulkityn\Neo\bin\Debug\net9.0-windows\Neo.exe
+C:\Users\arkadiusz.mulkityn\Neo\bin\Debug\net9.0-windows\Neo.deps.json
+C:\Users\arkadiusz.mulkityn\Neo\bin\Debug\net9.0-windows\Neo.runtimeconfig.json
+C:\Users\arkadiusz.mulkityn\Neo\bin\Debug\net9.0-windows\Neo.dll
+C:\Users\arkadiusz.mulkityn\Neo\bin\Debug\net9.0-windows\Neo.pdb
+C:\Users\arkadiusz.mulkityn\Neo\obj\Debug\net9.0-windows\Neo.dll
+C:\Users\arkadiusz.mulkityn\Neo\obj\Debug\net9.0-windows\refint\Neo.dll
+C:\Users\arkadiusz.mulkityn\Neo\obj\Debug\net9.0-windows\Neo.pdb
+C:\Users\arkadiusz.mulkityn\Neo\obj\Debug\net9.0-windows\Neo.genruntimeconfig.cache
+C:\Users\arkadiusz.mulkityn\Neo\obj\Debug\net9.0-windows\ref\Neo.dll
