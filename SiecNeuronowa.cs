@@ -19,22 +19,20 @@ namespace Neo
 
             Random losowy = new Random();
 
-            // Inicjalizacja wag
             wagi = new double[warstwy.Length][][];
             for (int warstwa = 1; warstwa < warstwy.Length; warstwa++)
             {
                 wagi[warstwa] = new double[warstwy[warstwa]][];
                 for (int neuron = 0; neuron < warstwy[warstwa]; neuron++)
                 {
-                    wagi[warstwa][neuron] = new double[warstwy[warstwa - 1] + 1]; // +1 dla biasu
+                    wagi[warstwa][neuron] = new double[warstwy[warstwa - 1] + 1];
                     for (int wejscie = 0; wejscie < wagi[warstwa][neuron].Length; wejscie++)
                     {
-                        wagi[warstwa][neuron][wejscie] = losowy.NextDouble() * 2 - 1; // Wagi w zakresie [-1, 1]
+                        wagi[warstwa][neuron][wejscie] = losowy.NextDouble() * 10 - 5;
                     }
                 }
             }
 
-            // Inicjalizacja struktur danych
             wyjscia = new double[warstwy.Length][];
             sumy = new double[warstwy.Length][];
             for (int warstwa = 0; warstwa < warstwy.Length; warstwa++)
@@ -51,18 +49,16 @@ namespace Neo
 
         public void PropagacjaWprzod(double[] wejscia)
         {
-            // Ustawienie wejść sieci
             for (int neuron = 0; neuron < warstwy[0]; neuron++)
             {
                 wyjscia[0][neuron] = wejscia[neuron];
             }
 
-            // Propagacja przez kolejne warstwy
             for (int warstwa = 1; warstwa < warstwy.Length; warstwa++)
             {
                 for (int neuron = 0; neuron < warstwy[warstwa]; neuron++)
                 {
-                    sumy[warstwa][neuron] = wagi[warstwa][neuron][0]; // Bias
+                    sumy[warstwa][neuron] = wagi[warstwa][neuron][0];
 
                     for (int wejscie = 0; wejscie < warstwy[warstwa - 1]; wejscie++)
                     {
@@ -76,7 +72,44 @@ namespace Neo
 
         public void PropagacjaWsteczna(double[] oczekiwaneWyjscia)
         {
-            // Tymczasowo pusta - implementacja w następnym commicie
+            double[][] delty = new double[warstwy.Length][];
+            for (int warstwa = 0; warstwa < warstwy.Length; warstwa++)
+            {
+                delty[warstwa] = new double[warstwy[warstwa]];
+            }
+
+            for (int neuron = 0; neuron < warstwy[warstwy.Length - 1]; neuron++)
+            {
+                double wyjscie = wyjscia[warstwy.Length - 1][neuron];
+                double blad = oczekiwaneWyjscia[neuron] - wyjscie;
+                delty[warstwy.Length - 1][neuron] = wspUcz * blad * PochodnaFunkcji(wyjscie);
+            }
+
+            for (int warstwa = warstwy.Length - 2; warstwa > 0; warstwa--)
+            {
+                for (int neuron = 0; neuron < warstwy[warstwa]; neuron++)
+                {
+                    double suma = 0;
+                    for (int neuronNast = 0; neuronNast < warstwy[warstwa + 1]; neuronNast++)
+                    {
+                        suma += delty[warstwa + 1][neuronNast] * wagi[warstwa + 1][neuronNast][neuron + 1];
+                    }
+                    delty[warstwa][neuron] = suma * PochodnaFunkcji(wyjscia[warstwa][neuron]);
+                }
+            }
+
+            for (int warstwa = 1; warstwa < warstwy.Length; warstwa++)
+            {
+                for (int neuron = 0; neuron < warstwy[warstwa]; neuron++)
+                {
+                    wagi[warstwa][neuron][0] += delty[warstwa][neuron];
+
+                    for (int wejscie = 0; wejscie < warstwy[warstwa - 1]; wejscie++)
+                    {
+                        wagi[warstwa][neuron][wejscie + 1] += delty[warstwa][neuron] * wyjscia[warstwa - 1][wejscie];
+                    }
+                }
+            }
         }
 
         private double FunkcjaAktywacji(double x)
