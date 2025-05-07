@@ -17,13 +17,30 @@ namespace Neo
             this.beta = beta;
             this.wspUcz = wspUcz;
 
+            Random losowy = new Random();
+
+            // Inicjalizacja wag
+            wagi = new double[warstwy.Length][][];
+            for (int warstwa = 1; warstwa < warstwy.Length; warstwa++)
+            {
+                wagi[warstwa] = new double[warstwy[warstwa]][];
+                for (int neuron = 0; neuron < warstwy[warstwa]; neuron++)
+                {
+                    wagi[warstwa][neuron] = new double[warstwy[warstwa - 1] + 1]; // +1 dla biasu
+                    for (int wejscie = 0; wejscie < wagi[warstwa][neuron].Length; wejscie++)
+                    {
+                        wagi[warstwa][neuron][wejscie] = losowy.NextDouble() * 2 - 1; // Wagi w zakresie [-1, 1]
+                    }
+                }
+            }
+
             // Inicjalizacja struktur danych
             wyjscia = new double[warstwy.Length][];
             sumy = new double[warstwy.Length][];
-            for (int i = 0; i < warstwy.Length; i++)
+            for (int warstwa = 0; warstwa < warstwy.Length; warstwa++)
             {
-                wyjscia[i] = new double[warstwy[i]];
-                sumy[i] = new double[warstwy[i]];
+                wyjscia[warstwa] = new double[warstwy[warstwa]];
+                sumy[warstwa] = new double[warstwy[warstwa]];
             }
         }
 
@@ -34,7 +51,27 @@ namespace Neo
 
         public void PropagacjaWprzod(double[] wejscia)
         {
-            // Tymczasowo pusta - implementacja w następnym commicie
+            // Ustawienie wejść sieci
+            for (int neuron = 0; neuron < warstwy[0]; neuron++)
+            {
+                wyjscia[0][neuron] = wejscia[neuron];
+            }
+
+            // Propagacja przez kolejne warstwy
+            for (int warstwa = 1; warstwa < warstwy.Length; warstwa++)
+            {
+                for (int neuron = 0; neuron < warstwy[warstwa]; neuron++)
+                {
+                    sumy[warstwa][neuron] = wagi[warstwa][neuron][0]; // Bias
+
+                    for (int wejscie = 0; wejscie < warstwy[warstwa - 1]; wejscie++)
+                    {
+                        sumy[warstwa][neuron] += wagi[warstwa][neuron][wejscie + 1] * wyjscia[warstwa - 1][wejscie];
+                    }
+
+                    wyjscia[warstwa][neuron] = FunkcjaAktywacji(sumy[warstwa][neuron]);
+                }
+            }
         }
 
         public void PropagacjaWsteczna(double[] oczekiwaneWyjscia)
