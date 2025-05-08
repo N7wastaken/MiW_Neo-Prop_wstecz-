@@ -13,7 +13,6 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
 
         private void InitializeComponent()
         {
@@ -76,7 +75,7 @@
             this.lblBeta.Text = "Beta:";
             
             // txtBeta
-            this.txtBeta.Location = new System.Drawing.Point(250, 20);
+            this.txtBeta.Location = new System.Drawing.Point(300, 20);
             this.txtBeta.Name = "txtBeta";
             this.txtBeta.Size = new System.Drawing.Size(50, 23);
             this.txtBeta.TabIndex = 5;
@@ -106,7 +105,7 @@
             this.lblEpoki.Text = "Epoki:";
             
             // txtEpoki
-            this.txtEpoki.Location = new System.Drawing.Point(250, 80);
+            this.txtEpoki.Location = new System.Drawing.Point(300, 80);
             this.txtEpoki.Name = "txtEpoki";
             this.txtEpoki.Size = new System.Drawing.Size(50, 23);
             this.txtEpoki.TabIndex = 9;
@@ -126,13 +125,12 @@
             this.txtWyniki.Name = "txtWyniki";
             this.txtWyniki.ReadOnly = true;
             this.txtWyniki.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtWyniki.Size = new System.Drawing.Size(740, 350);
+            this.txtWyniki.Size = new System.Drawing.Size(375, 250);
             this.txtWyniki.TabIndex = 11;
             
             // Form1
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.ClientSize = new System.Drawing.Size(415, 475);
             this.Controls.Add(this.txtWyniki);
             this.Controls.Add(this.lblWyniki);
             this.Controls.Add(this.txtEpoki);
@@ -151,7 +149,6 @@
             this.PerformLayout();
         }
 
-        #endregion
 
         private System.Windows.Forms.Button btnUczXOR;
         private System.Windows.Forms.Button btnUczXOR_NOR;
