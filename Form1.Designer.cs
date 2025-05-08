@@ -143,6 +143,9 @@
             this.Controls.Add(this.btnUczSumator);
             this.Controls.Add(this.btnUczXOR_NOR);
             this.Controls.Add(this.btnUczXOR);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Neuronowy Trener";
             this.ResumeLayout(false);
