@@ -34,6 +34,29 @@ namespace Neo
         {
             TestujSiec();
         }
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_SYSCOMMAND = 0x0112;
+            const int SC_MOUSEMENU = 0xF090; // Kliknięcie ikony okna
+            const int SC_CLOSE = 0xF060; // Zamknięcie okna (podwójne kliknięcie na ikonie)
+
+            if (m.Msg == WM_SYSCOMMAND)
+            {
+                int command = m.WParam.ToInt32() & 0xFFF0;
+
+                if (command == SC_MOUSEMENU)
+                {
+                    return; // Blokuje tylko menu systemowe na ikonie
+                }
+
+                if (command == SC_CLOSE && Control.MousePosition.X < this.Left + 40)
+                {
+                    return; // Blokuje podwójne kliknięcie na ikonie, ale nie blokuje normalnego "X"
+                }
+            }
+
+            base.WndProc(ref m);
+        }
 
         private void UczXOR()
         {
